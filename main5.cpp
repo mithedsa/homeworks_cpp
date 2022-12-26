@@ -23,15 +23,12 @@ class String{
 public:
     String() = default;
     String(char ch, int size){
-        //size_ = size;
-        //content_ = new char[size];
+        
         resize(size);
         std::fill(content_, content_ + size_, ch);
-        //for (int i = 0; i < size; i++)content_[i] = ch;
     }
     explicit String(int size){
-        //size_ = size;
-        //content_ = new char[size];
+ 
         resize(size);
         for (int i = 0; i < size; i++)
             content_[i] = char(33 + int(93*double(rand())/32768));
@@ -39,12 +36,12 @@ public:
     String(const char *liter, int size){
         resize(size);
         std::copy(liter, liter + size, content_);
-        //for (int i = 0; i < size; i++) content_[i] = liter[i];
+    
     }
     String(const String &right){
         resize(right.size_);
         std::copy(right.content_, right.content_ + right.size_, content_);
-        //for (int i = 0; i < size_; i++) content_[i] = right.content_[i];
+
     }
     ~String() {
         delete[] content_;
@@ -53,13 +50,7 @@ public:
     }
 
     String& operator=(const String &right){
-        /*if (this == &right)
-            return *this;
-        if (this->len() != right.len())
-            this->resize(right.len());
-        //std::copy(right.content_, right.content_ + right.size_, this->content_);
-        for (int i = 0; i < right.len(); i++)
-            this->content_[i] = right.content_[i];*/
+    
         new (this) String(right);
         return *this;
     }
@@ -75,7 +66,7 @@ public:
         int oldsize = size_;
         this->resize(this->len()+right.len());
         std::copy(right.content_, right.content_ + right.size_, this->content_ + oldsize);
-        //for (int i = oldsize; i < this->len(); i++) this->content_[i] = right.content_[i - oldsize];
+
     }
     bool operator==(const String &right){
         if (this->len() != right.len())
